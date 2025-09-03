@@ -15,7 +15,8 @@ namespace Dictionary_Exam.Logic
         {
             JsonSerializerOptions options = new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
+                IncludeFields = true
             };
 
             string json = JsonSerializer.Serialize(dict, options);
@@ -24,17 +25,22 @@ namespace Dictionary_Exam.Logic
 
         public WordDictionary LoadFromFile(string filePath)
         {
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                IncludeFields = true
+            };
             string json = File.ReadAllText(filePath);
-            WordDictionary? wordDictionary = JsonSerializer.Deserialize<WordDictionary>(json);
 
-            return wordDictionary is null ? throw new InvalidDataException($"Файл на пути {filePath} повреждён") : wordDictionary;
+            WordDictionary? wordDictionary = JsonSerializer.Deserialize<WordDictionary>(json, options);
+            return wordDictionary ?? throw new InvalidDataException($"Файл на пути {filePath} повреждён");
         }
 
         public void SaveTranslateToFile(string filePath, KeyValuePair<string, IReadOnlyList<string>> pair)
         {
             JsonSerializerOptions options = new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
             };
 
             string json = JsonSerializer.Serialize(pair, options);
@@ -46,8 +52,13 @@ namespace Dictionary_Exam.Logic
             if (File.Exists(filePath) == false)
                 throw new FileNotFoundException($"Пути {filePath} не существует");
 
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
             string json = File.ReadAllText(filePath);
-            KeyValuePair<string, List<string>>? pair = JsonSerializer.Deserialize<KeyValuePair<string, List<string>>>(json);
+            KeyValuePair<string, List<string>>? pair = JsonSerializer.Deserialize<KeyValuePair<string, List<string>>>(json, options);
 
             return pair ?? throw new InvalidDataException($"Файл на пути {filePath} повреждён");
         }

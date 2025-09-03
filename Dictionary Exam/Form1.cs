@@ -10,6 +10,8 @@ namespace Dictionary_Exam
     {
         private WordDictionary _dictionary;
         private readonly WordDictionaryFileManager _fileManager = new WordDictionaryFileManager();
+        private string _keyWord = string.Empty;
+        private string _valueWord = string.Empty;
 
         // Существующий конструктор оставляем для совместимости (создаёт default словарь)
         public Form1()
@@ -47,7 +49,32 @@ namespace Dictionary_Exam
             if (KeyList.SelectedItem is string selectedKey)
             {
                 ValueList.DataSource = _dictionary.ReadOnlyWrapper[selectedKey];
+
+
+                _keyWord = selectedKey;
+
+                if (ValueList.SelectedItem is string selectedValue)
+                    _valueWord = selectedValue;
+
+                // Устанавливаю значения в полях для ввода, на выбранные пользователем
+                WordForChangeOld.Text = _keyWord;
+                ExistingWord.Text = _keyWord;
+                KeyForChangeTranslate.Text = _keyWord;
+                WordToDelete.Text = _keyWord;
+                WordForDeleteTranslate.Text = _keyWord;
+
+                OldTranslate.Text = _valueWord;
+                DeletingTranslate.Text = _valueWord;
             }
+        }
+
+        private void ValueList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ValueList.SelectedItem is string selectedValue)
+                _valueWord = selectedValue;
+
+            OldTranslate.Text = _valueWord;
+            DeletingTranslate.Text = _valueWord;
         }
 
         private void AddWord_Click(object sender, EventArgs e)
@@ -66,7 +93,7 @@ namespace Dictionary_Exam
             _dictionary.ChangeWord(WordForChangeOld.Text, WordForChangeNew.Text);
 
             UpdateKeyList();
-            WordForChangeOld.Text = "";
+            WordForChangeOld.Text = _keyWord;
             WordForChangeNew.Text = "";
         }
 
@@ -75,7 +102,7 @@ namespace Dictionary_Exam
             _dictionary.DeleteWord(WordToDelete.Text);
 
             UpdateKeyList();
-            WordToDelete.Text = "";
+            WordToDelete.Text = _keyWord;
         }
 
         private void AddTranslate_Click(object sender, EventArgs e)
@@ -83,7 +110,7 @@ namespace Dictionary_Exam
             _dictionary.AddTranslate(ExistingWord.Text, AddedTranslate.Text);
 
             UpdateKeyList();
-            ExistingWord.Text = "";
+            ExistingWord.Text = _keyWord;
             AddedTranslate.Text = "";
         }
 
@@ -92,8 +119,8 @@ namespace Dictionary_Exam
             _dictionary.ChangeTranslate(KeyForChangeTranslate.Text, OldTranslate.Text, NewTranslate.Text);
 
             UpdateKeyList();
-            KeyForChangeTranslate.Text = "";
-            OldTranslate.Text = "";
+            KeyForChangeTranslate.Text = _keyWord;
+            OldTranslate.Text = _valueWord;
             NewTranslate.Text = "";
         }
 
@@ -102,15 +129,8 @@ namespace Dictionary_Exam
             _dictionary.DeleteTranslate(WordForDeleteTranslate.Text, DeletingTranslate.Text);
 
             UpdateKeyList();
-            WordForDeleteTranslate.Text = "";
-            DeletingTranslate.Text = "";
-        }
-
-        // Обновляем KeyList
-        private void UpdateKeyList()
-        {
-            KeyList.DataSource = null;
-            KeyList.DataSource = _dictionary.ReadOnlyWrapper.Keys.ToList();
+            WordForDeleteTranslate.Text = _keyWord;
+            DeletingTranslate.Text = _valueWord;
         }
 
         private void SaveSelectedTranslate_Click(object sender, EventArgs e)
@@ -194,7 +214,13 @@ namespace Dictionary_Exam
                         return;
                     }
 
-                    _dictionary.AddTranslate(key, translations);
+                    if (_dictionary.ReadOnlyWrapper.Keys.Contains(key))
+                        _dictionary.AddTranslate(key, translations);
+
+                    else
+                        _dictionary.AddWord(key, translations);
+
+                    UpdateKeyList();
                 }
                 catch (Exception ex)
                 {
@@ -202,5 +228,13 @@ namespace Dictionary_Exam
                 }
             }
         }
+
+
+        // Обновляем KeyList
+        private void UpdateKeyList()
+        {
+            KeyList.DataSource = null;
+            KeyList.DataSource = _dictionary.ReadOnlyWrapper.Keys.ToList();
+        }  
     }
 }

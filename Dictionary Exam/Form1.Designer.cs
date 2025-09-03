@@ -81,6 +81,7 @@
             ValueList.Name = "ValueList";
             ValueList.Size = new Size(308, 409);
             ValueList.TabIndex = 1;
+            ValueList.SelectedIndexChanged += ValueList_SelectedIndexChanged;
             // 
             // AddWord
             // 
@@ -127,7 +128,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(676, 105);
+            label3.Location = new Point(668, 95);
             label3.Name = "label3";
             label3.Size = new Size(78, 15);
             label3.TabIndex = 11;
@@ -136,7 +137,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(545, 105);
+            label4.Location = new Point(537, 95);
             label4.Name = "label4";
             label4.Size = new Size(112, 15);
             label4.TabIndex = 10;
@@ -144,21 +145,21 @@
             // 
             // WordForChangeNew
             // 
-            WordForChangeNew.Location = new Point(663, 123);
+            WordForChangeNew.Location = new Point(655, 113);
             WordForChangeNew.Name = "WordForChangeNew";
             WordForChangeNew.Size = new Size(104, 23);
             WordForChangeNew.TabIndex = 9;
             // 
             // WordForChangeOld
             // 
-            WordForChangeOld.Location = new Point(545, 123);
+            WordForChangeOld.Location = new Point(537, 113);
             WordForChangeOld.Name = "WordForChangeOld";
             WordForChangeOld.Size = new Size(112, 23);
             WordForChangeOld.TabIndex = 8;
             // 
             // ChangeWord
             // 
-            ChangeWord.Location = new Point(592, 152);
+            ChangeWord.Location = new Point(584, 142);
             ChangeWord.Name = "ChangeWord";
             ChangeWord.Size = new Size(118, 25);
             ChangeWord.TabIndex = 7;
@@ -195,7 +196,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(661, 199);
+            label6.Location = new Point(661, 225);
             label6.Name = "label6";
             label6.Size = new Size(93, 15);
             label6.TabIndex = 19;
@@ -204,7 +205,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(574, 199);
+            label7.Location = new Point(574, 225);
             label7.Name = "label7";
             label7.Size = new Size(42, 15);
             label7.TabIndex = 18;
@@ -212,21 +213,21 @@
             // 
             // AddedTranslate
             // 
-            AddedTranslate.Location = new Point(655, 217);
+            AddedTranslate.Location = new Point(655, 243);
             AddedTranslate.Name = "AddedTranslate";
             AddedTranslate.Size = new Size(104, 23);
             AddedTranslate.TabIndex = 17;
             // 
             // ExistingWord
             // 
-            ExistingWord.Location = new Point(545, 217);
+            ExistingWord.Location = new Point(545, 243);
             ExistingWord.Name = "ExistingWord";
             ExistingWord.Size = new Size(104, 23);
             ExistingWord.TabIndex = 16;
             // 
             // AddTranslate
             // 
-            AddTranslate.Location = new Point(592, 246);
+            AddTranslate.Location = new Point(592, 272);
             AddTranslate.Name = "AddTranslate";
             AddTranslate.Size = new Size(118, 25);
             AddTranslate.TabIndex = 15;
@@ -237,7 +238,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(706, 287);
+            label8.Location = new Point(706, 313);
             label8.Name = "label8";
             label8.Size = new Size(93, 15);
             label8.TabIndex = 24;
@@ -246,7 +247,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(533, 287);
+            label9.Location = new Point(533, 313);
             label9.Name = "label9";
             label9.Size = new Size(42, 15);
             label9.TabIndex = 23;
@@ -254,14 +255,14 @@
             // 
             // KeyForChangeTranslate
             // 
-            KeyForChangeTranslate.Location = new Point(512, 305);
+            KeyForChangeTranslate.Location = new Point(512, 331);
             KeyForChangeTranslate.Name = "KeyForChangeTranslate";
             KeyForChangeTranslate.Size = new Size(88, 23);
             KeyForChangeTranslate.TabIndex = 21;
             // 
             // ChangeTranslate
             // 
-            ChangeTranslate.Location = new Point(592, 334);
+            ChangeTranslate.Location = new Point(592, 360);
             ChangeTranslate.Name = "ChangeTranslate";
             ChangeTranslate.Size = new Size(118, 25);
             ChangeTranslate.TabIndex = 20;
@@ -271,14 +272,14 @@
             // 
             // OldTranslate
             // 
-            OldTranslate.Location = new Point(606, 305);
+            OldTranslate.Location = new Point(606, 331);
             OldTranslate.Name = "OldTranslate";
             OldTranslate.Size = new Size(94, 23);
             OldTranslate.TabIndex = 25;
             // 
             // NewTranslate
             // 
-            NewTranslate.Location = new Point(706, 305);
+            NewTranslate.Location = new Point(706, 331);
             NewTranslate.Name = "NewTranslate";
             NewTranslate.Size = new Size(93, 23);
             NewTranslate.TabIndex = 26;
@@ -286,7 +287,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(606, 287);
+            label10.Location = new Point(606, 313);
             label10.Name = "label10";
             label10.Size = new Size(97, 15);
             label10.TabIndex = 27;
@@ -336,7 +337,7 @@
             // 
             // SaveSelectedTranslate
             // 
-            SaveSelectedTranslate.Location = new Point(564, 437);
+            SaveSelectedTranslate.Location = new Point(564, 461);
             SaveSelectedTranslate.Name = "SaveSelectedTranslate";
             SaveSelectedTranslate.Size = new Size(166, 23);
             SaveSelectedTranslate.TabIndex = 33;
@@ -346,7 +347,7 @@
             // 
             // SaveDictionary
             // 
-            SaveDictionary.Location = new Point(564, 396);
+            SaveDictionary.Location = new Point(564, 420);
             SaveDictionary.Name = "SaveDictionary";
             SaveDictionary.Size = new Size(166, 23);
             SaveDictionary.TabIndex = 34;
@@ -356,7 +357,7 @@
             // 
             // LoadSelectedTranslate
             // 
-            LoadSelectedTranslate.Location = new Point(555, 466);
+            LoadSelectedTranslate.Location = new Point(555, 490);
             LoadSelectedTranslate.Name = "LoadSelectedTranslate";
             LoadSelectedTranslate.Size = new Size(185, 23);
             LoadSelectedTranslate.TabIndex = 35;
@@ -405,6 +406,7 @@
             Controls.Add(KeyList);
             Controls.Add(SaveSelectedTranslate);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();

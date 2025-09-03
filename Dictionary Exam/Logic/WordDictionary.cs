@@ -51,8 +51,8 @@ namespace Dictionary_Exam.Logic
         [JsonIgnore]
         public readonly ChacingReadOnlyDictionaryWrapper ReadOnlyWrapper;     // Публичное, неизменяемое представление словаря
 
-        public Languages SourceLanguage { get; }        // Язык с которого переводят
-        public Languages TargetLanguage { get; }        // Язык на который переводят
+        public Languages SourceLanguage { get; set; }        // Язык с которого переводят
+        public Languages TargetLanguage { get; set; }        // Язык на который переводят
 
 
         /* ==== Конструкторы ==== */
@@ -70,12 +70,12 @@ namespace Dictionary_Exam.Logic
         }
 
         [JsonConstructor]
-        public WordDictionary(Languages sourceLanguage, Languages targetLanguage, Dictionary<string, List<string>> dictionary)
+        public WordDictionary(Languages SourceLanguage, Languages TargetLanguage, Dictionary<string, List<string>> _dictionary)
         {
-            _dictionary = dictionary ?? new Dictionary<string, List<string>>();
-            ReadOnlyWrapper = new ChacingReadOnlyDictionaryWrapper(_dictionary);
-            SourceLanguage = sourceLanguage;
-            TargetLanguage = targetLanguage;
+            this._dictionary = _dictionary ?? new Dictionary<string, List<string>>();
+            ReadOnlyWrapper = new ChacingReadOnlyDictionaryWrapper(this._dictionary);
+            this.SourceLanguage = SourceLanguage;
+            this.TargetLanguage = TargetLanguage;
         }
 
 
@@ -85,14 +85,22 @@ namespace Dictionary_Exam.Logic
         /// Добавление нового слова и перевода для него
         /// </summary>
         /// <param name="sourceWord"></param>
-        /// <param name="targetWord"></param>
-        public void AddWord(string sourceWord, string targetWord)
+        /// <param name="translateWord"></param>
+        public void AddWord(string sourceWord, string translateWord)
         {
-            CheckPairNull(sourceWord, targetWord);
+            CheckPairNull(sourceWord, translateWord);
 
-            if (_dictionary.TryAdd(sourceWord, [targetWord]) == false)
+            if (_dictionary.TryAdd(sourceWord, [translateWord]) == false)
             {
-                AddTranslate(sourceWord, targetWord);
+                AddTranslate(sourceWord, translateWord);
+            }
+        }
+
+        public void AddWord(string sourceWord, List<string> translateList)
+        {
+            if (_dictionary.TryAdd(sourceWord, translateList) == false)
+            {
+                AddTranslate(sourceWord, translateList);
             }
         }
 

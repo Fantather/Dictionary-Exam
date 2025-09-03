@@ -15,7 +15,6 @@
             Application.ThreadException += (sender, e) =>
             {
                 MessageBox.Show($"Произошла ошибка: {e.Exception.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             };
 
             ApplicationConfiguration.Initialize();

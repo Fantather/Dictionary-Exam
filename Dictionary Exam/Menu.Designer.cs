@@ -37,7 +37,6 @@ namespace Dictionary_Exam
             labelTarget = new Label();
             CreateDictionary = new Button();
             SuspendLayout();
-
             // 
             // LoadDictionary
             // 
@@ -83,10 +82,10 @@ namespace Dictionary_Exam
             labelTarget.TabIndex = 2;
             labelTarget.Text = "Язык на который переводят";
             // 
-            // CreateConfirm
+            // CreateDictionary
             // 
             CreateDictionary.Location = new Point(176, 79);
-            CreateDictionary.Name = "CreateConfirm";
+            CreateDictionary.Name = "CreateDictionary";
             CreateDictionary.Size = new Size(120, 34);
             CreateDictionary.TabIndex = 0;
             CreateDictionary.Text = "Создать словарь";
@@ -105,6 +104,7 @@ namespace Dictionary_Exam
             Controls.Add(CreateDictionary);
             Controls.Add(LoadDictionary);
             Name = "Menu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu";
             ResumeLayout(false);
             PerformLayout();
