@@ -8,11 +8,6 @@
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Menu());
-
             // Позволяем WinForms передавать необработанные исключения в ThreadException
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
@@ -20,7 +15,11 @@
             Application.ThreadException += (sender, e) =>
             {
                 MessageBox.Show($"Произошла ошибка: {e.Exception.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             };
+
+            ApplicationConfiguration.Initialize();
+            Application.Run(new Menu());
         }
     }
 }

@@ -30,21 +30,14 @@ namespace Dictionary_Exam
         /// </summary>
         private void InitializeComponent()
         {
-            CreateDictionary = new Button();
             LoadDictionary = new Button();
             SourceCombo = new ComboBox();
             TargetCombo = new ComboBox();
             labelSource = new Label();
             labelTarget = new Label();
-            CreateConfirm = new Button();
+            CreateDictionary = new Button();
             SuspendLayout();
-            // 
-            // CreateDictionary
-            // 
-            CreateDictionary.Location = new Point(0, 0);
-            CreateDictionary.Name = "CreateDictionary";
-            CreateDictionary.Size = new Size(75, 23);
-            CreateDictionary.TabIndex = 0;
+
             // 
             // LoadDictionary
             // 
@@ -92,13 +85,13 @@ namespace Dictionary_Exam
             // 
             // CreateConfirm
             // 
-            CreateConfirm.Location = new Point(176, 79);
-            CreateConfirm.Name = "CreateConfirm";
-            CreateConfirm.Size = new Size(120, 34);
-            CreateConfirm.TabIndex = 0;
-            CreateConfirm.Text = "Создать словарь";
-            CreateConfirm.UseVisualStyleBackColor = true;
-            CreateConfirm.Click += CreateConfirm_Click;
+            CreateDictionary.Location = new Point(176, 79);
+            CreateDictionary.Name = "CreateConfirm";
+            CreateDictionary.Size = new Size(120, 34);
+            CreateDictionary.TabIndex = 0;
+            CreateDictionary.Text = "Создать словарь";
+            CreateDictionary.UseVisualStyleBackColor = true;
+            CreateDictionary.Click += CreateConfirm_Click;
             // 
             // Menu
             // 
@@ -109,7 +102,7 @@ namespace Dictionary_Exam
             Controls.Add(SourceCombo);
             Controls.Add(labelTarget);
             Controls.Add(TargetCombo);
-            Controls.Add(CreateConfirm);
+            Controls.Add(CreateDictionary);
             Controls.Add(LoadDictionary);
             Name = "Menu";
             Text = "Menu";
@@ -118,9 +111,9 @@ namespace Dictionary_Exam
         }
 
         #endregion
-        private Button CreateDictionary;
+
         private Button LoadDictionary;
-        private Button CreateConfirm;
+        private Button CreateDictionary; // CreateDictionary
         private ComboBox SourceCombo;
         private ComboBox TargetCombo;
         private Label labelSource;

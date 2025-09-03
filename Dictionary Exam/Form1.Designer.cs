@@ -336,7 +336,7 @@
             // 
             // SaveSelectedTranslate
             // 
-            SaveSelectedTranslate.Location = new Point(564, 425);
+            SaveSelectedTranslate.Location = new Point(564, 437);
             SaveSelectedTranslate.Name = "SaveSelectedTranslate";
             SaveSelectedTranslate.Size = new Size(166, 23);
             SaveSelectedTranslate.TabIndex = 33;
@@ -356,7 +356,7 @@
             // 
             // LoadSelectedTranslate
             // 
-            LoadSelectedTranslate.Location = new Point(555, 454);
+            LoadSelectedTranslate.Location = new Point(555, 466);
             LoadSelectedTranslate.Name = "LoadSelectedTranslate";
             LoadSelectedTranslate.Size = new Size(185, 23);
             LoadSelectedTranslate.TabIndex = 35;
