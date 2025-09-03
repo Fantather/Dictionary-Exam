@@ -139,21 +139,27 @@ namespace Dictionary_Exam.Logic
             }
         }
 
-        public void AddTranslate(string sourceWord, IReadOnlyList<string> listNewWords)
+        public void AddTranslate(string sourceWord, IReadOnlyCollection<string> listNewWords)
         {
             CheckKey(sourceWord);
 
             List<string> list = _dictionary[sourceWord];
-            
+            HashSet<string> existingWords = new HashSet<string>(list);
+            bool changed = false;
+
             foreach (string newWord in listNewWords)
             {
-                if (list.Contains(newWord) == false)
+                if (existingWords.Add(newWord))
                 {
                     list.Add(newWord);
+                    changed = true;
                 }
             }
 
-            ReadOnlyWrapper.Invalidate(sourceWord);
+            if (changed)
+            {
+                ReadOnlyWrapper.Invalidate(sourceWord);
+            }
         }
 
         /// <summary>

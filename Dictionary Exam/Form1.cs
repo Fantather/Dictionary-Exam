@@ -6,14 +6,39 @@ using System.Windows.Forms;
 
 namespace Dictionary_Exam
 {
-    public partial class Form1 : Form
+    internal partial class Form1 : Form
     {
-        private readonly WordDictionary _dictionary = new(Languages.Russian, Languages.English);
+        private WordDictionary _dictionary;
         private readonly WordDictionaryFileManager _fileManager = new WordDictionaryFileManager();
 
+        // Существующий конструктор оставляем для совместимости (создаёт default словарь)
         public Form1()
         {
             InitializeComponent();
+            _dictionary = new WordDictionary(Languages.Russian, Languages.English);
+            InitAfterDictionarySet();
+        }
+
+        // Конструктор по языкам
+        public Form1(Languages source, Languages target)
+        {
+            InitializeComponent();
+            _dictionary = new WordDictionary(source, target);
+            InitAfterDictionarySet();
+        }
+
+        // Конструктор, который принимает уже загруженный словарь
+        public Form1(WordDictionary dict)
+        {
+            if (dict == null) throw new ArgumentNullException(nameof(dict));
+            InitializeComponent();
+            _dictionary = dict;
+            InitAfterDictionarySet();
+        }
+
+        // Общая инициализация, которая должна выполняться после установки _dictionary
+        private void InitAfterDictionarySet()
+        {
             KeyList.DataSource = _dictionary.ReadOnlyWrapper.Keys.ToList();
         }
 
@@ -147,8 +172,8 @@ namespace Dictionary_Exam
 
         private void LoadSelectedTranslate_Click(object sender, EventArgs e)
         {
-            using(OpenFileDialog ofd = new OpenFileDialog())
-    {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
                 ofd.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
                 ofd.Title = "Выберите файл с переводом";
 
@@ -169,12 +194,13 @@ namespace Dictionary_Exam
                         return;
                     }
 
-                    
+                    _dictionary.AddTranslate(key, translations);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
     }
 }
